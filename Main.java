@@ -6,34 +6,50 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         ArrayList<InventorySlot> Inventory = new ArrayList<>();
         int AmntActions = 5;
+        boolean dead = false;
+        int score = -1;
         String answer;
         
-        while (AmntActions > 0){
-            System.out.println("You have " + AmntActions + " actions left today.");
-            System.out.println("What would you like to do?");
-            answer = scanner.next();
-            
-            if(answer.equals("entry")){
-                Dict.Puffball.studied = true;
-                Notebook.entry(Dict.Puffball);
-            }
-            else if(answer.equals("forage")){
-                Inventory.add(new InventorySlot(Dict.FalsePuffball));
-                System.out.println(Inventory.get(0).count);
-            }
-            else if(answer.equals("consume")){
-                if(Inventory.get(0).mush.deadly == true){
-                    System.out.println("You died");
-                    AmntActions = 0;
+        while(!dead){
+            AmntActions = 5;
+            while (AmntActions > 0){
+                System.out.println("You have " + AmntActions + " actions left today.");
+                System.out.println("What would you like to do?");
+                System.out.println();
+                answer = scanner.next();
+                System.out.println();
+                
+                if(answer.equals("entry")){
+                    Dict.Puffball.studied = true;
+                    Notebook.entry(Dict.Puffball);
                 }
-                Inventory.remove(0);
+                else if(answer.equals("forage")){
+                    Inventory.add(new InventorySlot(Dict.FalsePuffball));
+                }
+                else if(answer.equals("consume")){
+                    if(Inventory.size() == 0){
+                        System.out.println("You don't have food");
+                    }
+                    else if(Inventory.get(0).mush.deadly == true){
+                        System.out.println("You died");
+                        dead = true;
+                        AmntActions = 0;
+                    }
+                    else{
+                        Inventory.remove(0);
+                    }
+                }
+                else{
+                    System.out.println("Error. I didn't catch that.");
+                    System.out.println();
+                    continue;
+                }
+                System.out.println();
+                AmntActions--;
             }
-            else{
-                System.out.println("Error. I didn't catch that.");
-                continue;
-            }
-            AmntActions--;
+            score++;
         }
+        System.out.println("score: " + score);
     }
 }
 class InventorySlot{
