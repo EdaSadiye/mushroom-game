@@ -1,8 +1,15 @@
 # mushroom-game
 lil side project
 
-I dunno what to add here
-uhh, this is the only computer that's working properly, my other one had IDE's and stuff on it...
-so now I'm just using an online java ide and copy pasting it here...
-this is gonna be a game without visuals lol...
-it's kinda fun, so we'll see where it goes...
+How to run (for dummies):
+1) go to https://www.online-java.com/
+2) copy paste Main.java's contents into the IDE
+3) press run
+
+Game loop:
+- actions: 1.entry, 2.forage, 3.consume
+- 1.forage: add random mushroom to inventory
+- 2.entry: read entry for a chosen mushroom
+- 3.consume: eat a chosen mushroom from inventory
+*die if eat poison mushroom or don't eat enough
+*score based on survived days
