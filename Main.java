@@ -1,7 +1,39 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
 public class Main {
     public static void main (String[]args){
-        Dict.Puffball.studied = true;
-        Notebook.entry(Dict.Puffball);
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<InventorySlot> Inventory = new ArrayList<>();
+        int AmntActions = 5;
+        String answer;
+        
+        while (AmntActions > 0){
+            System.out.println("You have " + AmntActions + " actions left today.");
+            System.out.println("What would you like to do?");
+            answer = scanner.next();
+            
+            if(answer.equals("entry")){
+                Dict.Puffball.studied = true;
+                Notebook.entry(Dict.Puffball);
+            }
+            else if(answer.equals("forage")){
+                Inventory.add(new InventorySlot(Dict.FalsePuffball));
+                System.out.println(Inventory.get(0).count);
+            }
+            else if(answer.equals("consume")){
+                if(Inventory.get(0).mush.deadly == true){
+                    System.out.println("You died");
+                    AmntActions = 0;
+                }
+                Inventory.remove(0);
+            }
+            else{
+                System.out.println("Error. I didn't catch that.");
+                continue;
+            }
+            AmntActions--;
+        }
     }
 }
 class InventorySlot{
