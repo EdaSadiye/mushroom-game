@@ -7,8 +7,10 @@ public class Main {
         ArrayList<InventorySlot> Inventory = new ArrayList<>();
         int AmntActions = 5;
         boolean dead = false;
-        int score = -1;
+        int score = 0;
         String answer;
+        
+        int TargetConsumption = 1;
         
         ArrayList<Species>dict = new ArrayList<>();
         dict.add(Dict.Puffball);
@@ -19,6 +21,7 @@ public class Main {
             AmntActions = 5;
             while (AmntActions > 0){
                 System.out.println("You have " + AmntActions + " actions left today.");
+                System.out.println("You must consume " + TargetConsumption + " more mushrooms.");
                 System.out.println("What would you like to do?");
                 System.out.println();
                 answer = scanner.next();
@@ -36,12 +39,12 @@ public class Main {
                         System.out.println("You don't have food");
                     }
                     else if(Inventory.get(Inventory.size()-1).mush.deadly == true){
-                        System.out.println("You died");
                         dead = true;
                         AmntActions = 0;
                     }
                     else{
                         Inventory.remove(Inventory.size()-1);
+                        TargetConsumption--;
                     }
                 }
                 else{
@@ -52,7 +55,15 @@ public class Main {
                 System.out.println();
                 AmntActions--;
             }
-            score++;
+            if(TargetConsumption > 0 || dead){
+                System.out.println("You died");
+                dead = true;
+                AmntActions = 0;
+            }
+            else{
+                score++;
+                TargetConsumption = (int)(Math.random() * 5);
+            }
         }
         System.out.println("score: " + score);
     }
