@@ -1,4 +1,4 @@
-[⚠️ Suspicious Content] import java.util.Scanner;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
@@ -32,8 +32,7 @@ public class Main {
                         System.out.println("Nothing in inventory");
                     }
                     else{
-                        Inventory.get(Inventory.size()-1).mush.studied = true;
-                        Notebook.entry(Inventory.get(Inventory.size()-1).mush);
+                        entry(Inventory.get(Inventory.size()-1).mush);
                     }
                 }
                 else if(answer.equals("forage")){
@@ -75,6 +74,13 @@ public class Main {
         }
         System.out.println("score: " + score);
     }
+    
+    
+    static void entry(Species sp){
+        System.out.println(sp.name + ": " + sp.description);
+        if(sp.deadly) System.out.println("Deadly to consume");
+        else System.out.println("Safe to consume");
+    }
 }
 class InventorySlot{
     Species mush;
@@ -85,25 +91,10 @@ class InventorySlot{
     }
 }
 
-class Notebook{
-    static void entry(Species sp){
-        if(sp.studied){
-            System.out.println(sp.name + ": " + sp.description);
-            if(sp.deadly) System.out.println("Deadly to consume");
-            else System.out.println("Safe to consume");
-        }
-        else{
-            System.out.println("???: ????? ??? ????? ?? ??? ? ??????.");
-            System.out.println("???????????????");
-        }
-    }
-}
-
 class Species{
     String name;
     String description;
     boolean deadly;
-    boolean studied;
     
     Species(String n, String desc, boolean d){
         name = n;
