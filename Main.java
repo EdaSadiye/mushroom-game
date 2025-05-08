@@ -1,4 +1,4 @@
-import java.util.Scanner;
+[⚠️ Suspicious Content] import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
@@ -28,8 +28,13 @@ public class Main {
                 System.out.println();
                 
                 if(answer.equals("entry")){
-                    Inventory.get(Inventory.size()-1).mush.studied = true;
-                    Notebook.entry(Inventory.get(Inventory.size()-1).mush);
+                    if(Inventory.size() == 0){
+                        System.out.println("Nothing in inventory");
+                    }
+                    else{
+                        Inventory.get(Inventory.size()-1).mush.studied = true;
+                        Notebook.entry(Inventory.get(Inventory.size()-1).mush);
+                    }
                 }
                 else if(answer.equals("forage")){
                     Inventory.add(new InventorySlot(dict.get((int)(Math.random()*3))));
@@ -46,6 +51,9 @@ public class Main {
                         Inventory.remove(Inventory.size()-1);
                         TargetConsumption--;
                     }
+                }
+                else if(answer.equals("toss")){
+                    Inventory.remove(Inventory.size()-1);
                 }
                 else{
                     System.out.println("Error. I didn't catch that.");
