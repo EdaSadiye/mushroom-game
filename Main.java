@@ -10,6 +10,11 @@ public class Main {
         int score = -1;
         String answer;
         
+        ArrayList<Species>dict = new ArrayList<>();
+        dict.add(Dict.Puffball);
+        dict.add(Dict.Chanterelle);
+        dict.add(Dict.FalsePuffball);
+        
         while(!dead){
             AmntActions = 5;
             while (AmntActions > 0){
@@ -20,23 +25,23 @@ public class Main {
                 System.out.println();
                 
                 if(answer.equals("entry")){
-                    Dict.Puffball.studied = true;
-                    Notebook.entry(Dict.Puffball);
+                    Inventory.get(Inventory.size()-1).mush.studied = true;
+                    Notebook.entry(Inventory.get(Inventory.size()-1).mush);
                 }
                 else if(answer.equals("forage")){
-                    Inventory.add(new InventorySlot(Dict.FalsePuffball));
+                    Inventory.add(new InventorySlot(dict.get((int)(Math.random()*3))));
                 }
                 else if(answer.equals("consume")){
                     if(Inventory.size() == 0){
                         System.out.println("You don't have food");
                     }
-                    else if(Inventory.get(0).mush.deadly == true){
+                    else if(Inventory.get(Inventory.size()-1).mush.deadly == true){
                         System.out.println("You died");
                         dead = true;
                         AmntActions = 0;
                     }
                     else{
-                        Inventory.remove(0);
+                        Inventory.remove(Inventory.size()-1);
                     }
                 }
                 else{
