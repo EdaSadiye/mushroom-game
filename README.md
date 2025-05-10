@@ -2,9 +2,9 @@
 lil side project
 
 How to run (for dummies):
-1) go to https://www.online-java.com/
-2) copy paste Main.java's contents into the IDE
-3) press run
+1) open in eclipse
+2) download as jar file
+3) search how to run jar file on your OS
 
 Game loop:
 - actions: 1.entry, 2.forage, 3.consume
