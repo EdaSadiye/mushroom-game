@@ -2,7 +2,7 @@
 lil side project
 
 How to run (for dummies):
-1) download as jar file
+1) download the jar file
 3) search how to run jar file on your OS
 
 Game loop:
